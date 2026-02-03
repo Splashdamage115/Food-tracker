@@ -1,4 +1,5 @@
 const axios = require('axios');
+const crypto = require('crypto');
 
 class NutritionService {
   constructor() {
@@ -99,7 +100,7 @@ class NutritionService {
       }
 
       return response.data.products.slice(0, limit).map(product => ({
-        id: `ext_off_${product.code || Math.random().toString(36).substr(2, 9)}`,
+        id: `ext_off_${product.code || crypto.randomUUID()}`,
         name: product.product_name || 'Unknown',
         brand: product.brands || 'Generic',
         servingSize: product.serving_size || '100g',

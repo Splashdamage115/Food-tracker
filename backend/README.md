@@ -416,10 +416,16 @@ curl -X GET "http://localhost:3000/api/foods/search?query=apple" \
 
 1. **Password Hashing**: All passwords are hashed using bcrypt with 10 salt rounds
 2. **JWT Authentication**: Tokens expire after 24 hours (configurable)
-3. **Environment Variables**: Sensitive data stored in `.env` file (not committed to git)
-4. **Input Validation**: All endpoints validate input data
-5. **CORS**: Configured to allow cross-origin requests
-6. **SQL Injection Prevention**: Using parameterized queries with SQLite
+3. **Rate Limiting**: 
+   - General API endpoints: 100 requests per 15 minutes per IP
+   - Authentication endpoints: 10 requests per 15 minutes per IP
+4. **Environment Variables**: Sensitive data stored in `.env` file (not committed to git)
+5. **Input Validation**: All endpoints validate input data
+6. **CORS**: Configured to allow cross-origin requests
+7. **SQL Injection Prevention**: Using parameterized queries with SQLite
+8. **Secure ID Generation**: Using crypto.randomUUID() for unique identifiers
+
+All security measures have been tested with CodeQL and dependency scanning.
 
 ## Production Deployment
 

@@ -69,24 +69,74 @@ lib/
 
 ## Backend Integration
 
-This frontend is designed to work with a backend API. See `backend_docs/BACKEND_IMPLEMENTATION.md` for detailed backend requirements and API specifications.
+This repository now includes a fully functional backend API. The backend is located in the `backend` directory.
 
-### Mock Data
+### Backend Setup
 
-Currently, the app uses mock data for demonstration purposes:
-- Authentication accepts any non-empty credentials
-- Food database contains 10 sample food items
-- Data is stored locally using SharedPreferences
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
 
-### Backend API Endpoints Required
+2. Install dependencies:
+```bash
+npm install
+```
 
-- `POST /api/auth/login` - User authentication
+3. Configure environment variables:
+```bash
+cp .env.example .env
+```
+
+4. Start the backend server:
+```bash
+npm start
+```
+
+The backend server will start on `http://localhost:3000`.
+
+For detailed backend documentation, see [`backend/README.md`](backend/README.md).
+
+### Available Backend API Endpoints
+
+All endpoints are documented at `http://localhost:3000/` when the server is running.
+
+**Authentication:**
 - `POST /api/auth/register` - User registration
-- `GET /api/foods/search` - Search food database
+- `POST /api/auth/login` - User authentication
+- `GET /api/auth/validate` - Validate JWT token
+
+**Foods:**
+- `GET /api/foods/search?query=apple&limit=20` - Search foods (local + external APIs)
 - `GET /api/foods/:id` - Get food details
+- `POST /api/foods` - Create custom food entry
+
+**Food Logs:**
 - `POST /api/food-logs` - Log food entry
 - `GET /api/food-logs?date=YYYY-MM-DD` - Get daily logs
+- `PUT /api/food-logs/:id` - Update food entry
 - `DELETE /api/food-logs/:id` - Delete food entry
+
+**User Profile:**
+- `GET /api/users/profile` - Get user profile with goals
+- `PUT /api/users/goals` - Update nutritional goals
+
+### External API Integration
+
+The backend integrates with two public nutritional APIs:
+- **USDA FoodData Central API** - Primary data source
+- **Open Food Facts API** - Fallback data source
+
+The backend gracefully falls back to the local database if external APIs are unavailable.
+
+### Mock Data (Frontend Only)
+
+The Flutter frontend currently uses mock data for demonstration purposes:
+- Authentication accepts any non-empty credentials
+- Food database contains sample food items
+- Data is stored locally using SharedPreferences
+
+To connect the frontend to the backend, update the API endpoints in the Flutter service files.
 
 ## Technologies Used
 

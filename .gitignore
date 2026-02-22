@@ -44,7 +44,16 @@ app.*.map.json
 /android/app/release
 
 # Web related
-/web/
+/web/flutter_service_worker.js
+/web/flutter.js
+/web/main.dart.js
+/web/main.dart.js.map
+/web/version.json
+/web/assets/AssetManifest.json
+/web/assets/FontManifest.json
+/web/assets/NOTICES
+/web/assets/packages/
+/web/canvaskit/
 
 # Windows related
 windows/flutter/ephemeral/

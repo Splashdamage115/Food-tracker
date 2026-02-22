@@ -54,3 +54,8 @@ windows/flutter/ephemeral/
 
 # Linux related
 /linux/flutter/ephemeral/
+
+# Backend
+backend/node_modules/
+backend/.env
+backend/*.log
